@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  shared-expenses:
+    build: .
+    container_name: shared-expenses-app
+    networks:
+      - mongo-compose-network
+    restart: always
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongo
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=shared-expenses
+      - SPRING_DATA_MONGODB_USERNAME=expensesAdmin
+      - SPRING_DATA_MONGODB_PASSWORD=expensesAdmin2022
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+  mongo:
+    image: mongo:latest
+    container_name: shared-expenses-mongo
+    networks:
+      - mongo-compose-network
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: shared-expenses
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+networks:
+  mongo-compose-network:
+    driver: bridge
