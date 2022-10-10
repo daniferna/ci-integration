@@ -1,4 +1,4 @@
-package com.dfernandezaller.shared_expenses.model
+package com.dfernandezaller.shared_expenses.model.dto
 
 data class PersonalBalanceDTO(
     val name: String,

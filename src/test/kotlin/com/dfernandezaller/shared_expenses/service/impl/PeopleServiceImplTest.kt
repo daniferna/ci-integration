@@ -1,35 +1,30 @@
 package com.dfernandezaller.shared_expenses.service.impl
 
-import com.dfernandezaller.shared_expenses.PeopleRepository
+import com.dfernandezaller.shared_expenses.repositories.PeopleRepository
+import com.dfernandezaller.shared_expenses.service.PeopleService
 import com.dfernandezaller.shared_expenses.utils.getTestPerson
 import org.junit.jupiter.api.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.springframework.boot.test.context.SpringBootTest
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
-@SpringBootTest
 internal class PeopleServiceImplTest {
 
-    @InjectMocks
-    lateinit var peopleServiceImpl: PeopleServiceImpl
+    private val peopleRepositoryMock: PeopleRepository = mock(PeopleRepository::class.java)
 
-    @Mock
-    lateinit var peopleRepository: PeopleRepository
+    private val peopleServiceImpl: PeopleService = PeopleServiceImpl(peopleRepositoryMock)
 
     @Test
-    fun shouldCreatePerson() {
+    fun createPerson() {
         //GIVEN
         val person = getTestPerson("Test name")
-        Mockito.`when`(peopleRepository.save(person)).thenReturn(Mono.just(person))
+        `when`(peopleRepositoryMock.save(person)).thenReturn(Mono.just(person))
 
         //WHEN
         val result = peopleServiceImpl.savePerson(person)
 
         //THEN
-        Mockito.verify(peopleRepository, Mockito.times(1)).save(person)
         StepVerifier.create(result)
             .expectNext(person)
             .verifyComplete()

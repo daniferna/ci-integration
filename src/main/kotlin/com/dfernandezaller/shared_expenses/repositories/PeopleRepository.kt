@@ -1,14 +1,10 @@
-package com.dfernandezaller.shared_expenses
+package com.dfernandezaller.shared_expenses.repositories
 
-import com.dfernandezaller.shared_expenses.model.AggregatedSpentByPerson
-import com.dfernandezaller.shared_expenses.model.Payment
-import com.dfernandezaller.shared_expenses.model.Person
+import com.dfernandezaller.shared_expenses.model.dto.AggregatedSpentByPersonDTO
+import com.dfernandezaller.shared_expenses.model.entities.Person
 import org.springframework.data.mongodb.repository.Aggregation
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import reactor.core.publisher.Flux
-
-
-interface PaymentRepository : ReactiveMongoRepository<Payment, Long>
 
 interface PeopleRepository : ReactiveMongoRepository<Person, Long> {
 
@@ -19,5 +15,5 @@ interface PeopleRepository : ReactiveMongoRepository<Person, Long> {
             "{ \$project: {  name: '\$name',  lastName: '\$lastName',  totalSpent: {   \$sum: '\$payments.amount'  } }}"
         ]
     )
-    fun getPeopleGroupedByAmountSpent(): Flux<AggregatedSpentByPerson>
+    fun getPeopleGroupedByAmountSpent(): Flux<AggregatedSpentByPersonDTO>
 }
