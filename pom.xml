@@ -4,10 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <groupId>com.dfernandezaller</groupId>
-    <artifactId>SharedExpenses</artifactId>
+    <artifactId>sharedexpenses</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Shared expenses</name>
     <description>Shared expenses project</description>
+    <scm>
+        <developerConnection>scm:git:https://github.com/daniferna/ci-integration.git</developerConnection>
+    </scm>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,16 +20,25 @@
     </parent>
 
     <properties>
+        <project.scm.id>github</project.scm.id>
         <failsafe-surefire.version>2.22.2</failsafe-surefire.version>
         <jacoco-version>0.8.8</jacoco-version>
     </properties>
 
     <modules>
-        <module>SharedExpenses-persistence</module>
-        <module>SharedExpenses-rest</module>
-        <module>SharedExpenses-domain</module>
-        <module>SharedExpenses-application</module>
+        <module>sharedexpenses-persistence</module>
+        <module>sharedexpenses-rest</module>
+        <module>sharedexpenses-domain</module>
+        <module>sharedexpenses-application</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub</name>
+            <url>https://maven.pkg.github.com/daniferna/ci-integration</url>
+        </repository>
+    </distributionManagement>
 
     <profiles>
         <profile>

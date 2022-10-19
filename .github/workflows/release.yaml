@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.6.0
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          server-id: github
+      - name: Configure Git user
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+      - name: Get version
+        run: echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | cut -d- -f1)" >> $GITHUB_ENV
+      - name: Publish JAR
+        run: ./mvnw -B release:prepare package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: sharedexpenses-${{ env.RELEASE_VERSION }}
+          title: "Stable Build"
+          files: |
+            sharedexpenses-*/target/*${{ env.RELEASE_VERSION }}.jar
