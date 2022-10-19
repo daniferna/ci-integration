@@ -1,0 +1,15 @@
+language: java
+sudo: false
+
+cache:
+  directories:
+    - "$HOME/.m2"
+
+before_install:
+  - chmod +x mvnw
+
+before_cache:
+  - rm -rf $HOME/.m2/repository/com/dfernandezaller/SharedExpenses
+
+jdk:
+  - openjdk17
