@@ -16,12 +16,49 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <properties>
+        <failsafe-surefire.version>2.22.2</failsafe-surefire.version>
+        <jacoco-version>0.8.8</jacoco-version>
+    </properties>
+
     <modules>
         <module>SharedExpenses-persistence</module>
         <module>SharedExpenses-rest</module>
         <module>SharedExpenses-domain</module>
         <module>SharedExpenses-application</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>jacoco</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco-version}</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/SharedExpensesApp.class</exclude>
+                                <exclude>**/SharedExpensesAppTest.class</exclude>
+
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -51,7 +88,7 @@
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
-            <version>2.22.2</version>
+            <version>${failsafe-surefire.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -60,14 +97,28 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${failsafe-surefire.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*IT.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${failsafe-surefire.version}</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <reportsDirectory>${project.build.directory}/failsafe-reports</reportsDirectory>
+                            <skipTests>false</skipTests>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

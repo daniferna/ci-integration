@@ -1,5 +1,4 @@
 language: java
-sudo: false
 
 cache:
   directories:
@@ -7,6 +6,10 @@ cache:
 
 before_install:
   - chmod +x mvnw
+  - sudo apt-get install jq
+
+after_success:
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r SharedExpenses-application/target/site/jacoco-aggregate/jacoco.xml
 
 before_cache:
   - rm -rf $HOME/.m2/repository/com/dfernandezaller/SharedExpenses
