@@ -1,4 +1,4 @@
-package com.dfernandezaller.shared_expenses.persistence.repositories.impl
+package com.dfernandezaller.shared_expenses.persistence.repositories
 
 import com.dfernandezaller.shared_expenses.domain.model.entities.Payment
 import com.dfernandezaller.shared_expenses.domain.model.entities.Person
@@ -7,9 +7,11 @@ import com.dfernandezaller.shared_expenses.persistence.MongoPaymentDAO
 import com.dfernandezaller.shared_expenses.persistence.data.MongoPayment
 import com.dfernandezaller.shared_expenses.persistence.data.MongoPerson
 import org.springframework.data.domain.Sort
+import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
+@Component
 class MongoPaymentRepository(private val mongoPaymentDAO: MongoPaymentDAO) : PaymentRepository {
 
     override fun save(payment: Payment): Mono<Payment> {
@@ -26,9 +28,9 @@ class MongoPaymentRepository(private val mongoPaymentDAO: MongoPaymentDAO) : Pay
             .map { Payment(Person(it.owner.name, it.owner.lastName), it.amount, it.description, it.date) }
     }
 
-    override fun getAll(sort: Sort): Flux<Payment> {
+    override fun getAll(): Flux<Payment> {
         return mongoPaymentDAO
-            .findAll(sort)
+            .findAll(Sort.unsorted())
             .map { Payment(Person(it.owner.name, it.owner.lastName), it.amount, it.description, it.date) }
     }
 

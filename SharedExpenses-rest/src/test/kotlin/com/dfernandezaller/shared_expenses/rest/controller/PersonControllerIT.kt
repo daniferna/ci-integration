@@ -1,7 +1,7 @@
 package com.dfernandezaller.shared_expenses.rest.controller
 
 import com.dfernandezaller.shared_expenses.domain.model.entities.Person
-import com.dfernandezaller.shared_expenses.domain.service.PersonService
+import com.dfernandezaller.shared_expenses.domain.primary.ports.PersonService
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test

@@ -1,6 +1,6 @@
 package com.dfernandezaller.shared_expenses.rest.controller
 
-import com.dfernandezaller.shared_expenses.domain.service.PaymentService
+import com.dfernandezaller.shared_expenses.domain.primary.ports.PaymentService
 import com.dfernandezaller.shared_expenses.domain.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeAll

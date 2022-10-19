@@ -1,4 +1,4 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.logic
 
 import com.dfernandezaller.shared_expenses.domain.model.dto.BalanceDTO
 import com.dfernandezaller.shared_expenses.domain.model.dto.PaymentDTO
@@ -6,7 +6,6 @@ import com.dfernandezaller.shared_expenses.domain.model.dto.PersonDTO
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 
-//TODO: Tests de esta clase
 @Service
 class CalculateBalanceService {
     fun calculateBalance(paymentsFlux: Flux<PaymentDTO>, peopleFlux: Flux<PersonDTO>): Flux<BalanceDTO> {

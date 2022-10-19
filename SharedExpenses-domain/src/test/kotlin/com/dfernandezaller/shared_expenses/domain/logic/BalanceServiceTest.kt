@@ -1,5 +1,6 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.logic
 
+import com.dfernandezaller.shared_expenses.domain.primary.ports.BalanceService
 import com.dfernandezaller.shared_expenses.domain.utils.BalanceMother
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test

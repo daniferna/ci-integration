@@ -1,6 +1,6 @@
 package com.dfernandezaller.shared_expenses.com.dfernandezaller.shared_expenses.rest.controller
 
-import com.dfernandezaller.shared_expenses.domain.service.BalanceService
+import com.dfernandezaller.shared_expenses.domain.primary.ports.BalanceService
 import com.dfernandezaller.shared_expenses.domain.utils.BalanceMother
 import com.dfernandezaller.shared_expenses.rest.controller.BalanceController
 import com.fasterxml.jackson.databind.ObjectMapper

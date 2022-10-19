@@ -1,4 +1,4 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.logic
 
 import com.dfernandezaller.shared_expenses.domain.utils.BalanceMother
 import com.dfernandezaller.shared_expenses.domain.utils.PaymentMother

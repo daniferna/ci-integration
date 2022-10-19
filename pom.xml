@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <groupId>com.dfernandezaller</groupId>
     <artifactId>SharedExpenses</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>Shared expenses</name>
     <description>Shared expenses project</description>
 
@@ -44,7 +44,6 @@
                             <excludes>
                                 <exclude>**/SharedExpensesApp.class</exclude>
                                 <exclude>**/SharedExpensesAppTest.class</exclude>
-
                             </excludes>
                         </configuration>
                         <executions>

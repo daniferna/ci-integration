@@ -1,5 +1,6 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.logic
 
+import com.dfernandezaller.shared_expenses.domain.primary.ports.PaymentService
 import com.dfernandezaller.shared_expenses.domain.utils.PaymentMother
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals

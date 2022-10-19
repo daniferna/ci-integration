@@ -1,23 +1,22 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.primary.ports
 
 import com.dfernandezaller.shared_expenses.domain.model.dto.PaymentDTO
 import com.dfernandezaller.shared_expenses.domain.model.entities.Payment
-import com.dfernandezaller.shared_expenses.domain.persistence.RepositoryFactory
-import org.springframework.data.domain.Sort
+import com.dfernandezaller.shared_expenses.domain.persistence.PaymentRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
-class PaymentService(private val repositoryFactory: RepositoryFactory) {
+class PaymentService(private val paymentRepository: PaymentRepository) {
     fun getPayments(): Flux<PaymentDTO> {
-        return repositoryFactory.createPaymentRepository()
-            .getAll(Sort.by(Sort.Order.desc("date")))
+        return paymentRepository
+            .getAll()
             .map(Payment::toDTO)
     }
 
     fun addPayment(payment: PaymentDTO): Mono<PaymentDTO> {
-        return repositoryFactory.createPaymentRepository()
+        return paymentRepository
             .save(payment.toEntity())
             .map(Payment::toDTO)
     }

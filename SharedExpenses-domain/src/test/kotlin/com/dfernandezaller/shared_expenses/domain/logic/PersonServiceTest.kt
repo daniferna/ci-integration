@@ -1,6 +1,7 @@
-package com.dfernandezaller.shared_expenses.domain.service
+package com.dfernandezaller.shared_expenses.domain.logic
 
 import com.dfernandezaller.shared_expenses.domain.model.entities.Person
+import com.dfernandezaller.shared_expenses.domain.primary.ports.PersonService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`

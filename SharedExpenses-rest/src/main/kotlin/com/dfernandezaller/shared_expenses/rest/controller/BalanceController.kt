@@ -1,7 +1,7 @@
 package com.dfernandezaller.shared_expenses.rest.controller
 
 import com.dfernandezaller.shared_expenses.domain.model.dto.BalanceDTO
-import com.dfernandezaller.shared_expenses.domain.service.BalanceService
+import com.dfernandezaller.shared_expenses.domain.primary.ports.BalanceService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

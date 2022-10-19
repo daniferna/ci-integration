@@ -5,11 +5,12 @@
     <parent>
         <artifactId>SharedExpenses</artifactId>
         <groupId>com.dfernandezaller</groupId>
-        <version>0.0.1</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>SharedExpenses-domain</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

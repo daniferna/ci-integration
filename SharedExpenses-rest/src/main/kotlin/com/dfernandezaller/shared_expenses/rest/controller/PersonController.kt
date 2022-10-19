@@ -1,7 +1,7 @@
 package com.dfernandezaller.shared_expenses.rest.controller
 
 import com.dfernandezaller.shared_expenses.domain.model.dto.PersonDTO
-import com.dfernandezaller.shared_expenses.domain.service.PersonService
+import com.dfernandezaller.shared_expenses.domain.primary.ports.PersonService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
