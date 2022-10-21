@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get install jq
 
 after_success:
-  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r SharedExpenses-application/target/site/jacoco-aggregate/jacoco.xml
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r sharedexpenses-application/target/site/jacoco-aggregate/jacoco.xml
 
 before_cache:
   - rm -rf $HOME/.m2/repository/com/dfernandezaller/SharedExpenses
