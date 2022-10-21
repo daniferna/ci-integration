@@ -3,12 +3,12 @@
     <parent>
         <artifactId>sharedexpenses</artifactId>
         <groupId>com.dfernandezaller</groupId>
-        <version>0.0.3</version>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sharedexpenses-rest</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -21,13 +21,13 @@
         <dependency>
             <groupId>com.dfernandezaller</groupId>
             <artifactId>sharedexpenses-domain</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.dfernandezaller</groupId>
             <artifactId>sharedexpenses-domain</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4-SNAPSHOT</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
