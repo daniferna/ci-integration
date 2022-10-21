@@ -1,10 +1,9 @@
 name: Maven build CI
 
 on:
-  push:
-    branches-ignore:
-      - 'main'
   pull_request:
+    branches:
+      - 'main'
   workflow_dispatch:
 
 jobs:
@@ -21,8 +20,3 @@ jobs:
           cache: maven
       - name: Maven verify
         run: ./mvnw clean verify -B
-      - name: Upload coverage data
-        if: github.ref == 'refs/heads/master'
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r sharedexpenses-application/target/site/jacoco-aggregate/jacoco.xml

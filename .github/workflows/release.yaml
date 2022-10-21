@@ -23,10 +23,15 @@ jobs:
           git config user.name "GitHub Actions"
       - name: Get version
         run: echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | cut -d- -f1)" >> $GITHUB_ENV
-      - name: Publish JAR
-        run: ./mvnw -B release:prepare package
+      - name: Build JAR
+        run: ./mvnw -B release:prepare
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload coverage data
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        run: bash <(curl -Ls  https://coverage.codacy.com/get.sh) report -r sharedexpenses-application/target/site/jacoco-aggregate/jacoco.xml
+
       - name: Create release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
