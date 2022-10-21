@@ -27,11 +27,6 @@ jobs:
         run: ./mvnw -B release:prepare
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload coverage data
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        run: bash <(curl -Ls  https://coverage.codacy.com/get.sh) report -r sharedexpenses-application/target/site/jacoco-aggregate/jacoco.xml
-
       - name: Create release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
@@ -41,3 +36,7 @@ jobs:
           title: "Stable Build"
           files: |
             sharedexpenses-*/target/*${{ env.RELEASE_VERSION }}.jar
+      - name: Upload coverage data
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Kotlin --force-language -r sharedexpenses-application/target/site/jacoco-aggregate/jacoco.xml
