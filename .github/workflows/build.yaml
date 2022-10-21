@@ -2,9 +2,13 @@ name: Maven build CI
 
 on:
   - push:
-      branches:
+      branches-ignore:
         - '!main'
+      branches:
+        - '*'
   - pull_request:
+      branches:
+        - '*'
 
 jobs:
   build:
