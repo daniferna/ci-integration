@@ -4,7 +4,7 @@
     <packaging>pom</packaging>
     <groupId>com.dfernandezaller</groupId>
     <artifactId>sharedexpenses</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>Shared expenses</name>
     <description>Shared expenses project</description>
     <scm>
